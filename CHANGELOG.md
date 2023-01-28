@@ -1,3 +1,9 @@
+## 0.1.3
+
+* Fix recursive dumping of objects.
+* Fix breaking on static fields.
+* Add `hideFields` parameter.
+
 ## 0.1.2
 
 * Updated README.

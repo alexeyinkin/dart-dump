@@ -13,8 +13,15 @@ class Foo {
   int? nn;
   String s;
   final _private = 'private'; // ignore: unused_field
+  final bar = Bar();
 
-  void method() {}
+  static int staticIsIgnored = 1; // ignore: prefer_const_declarations
+  static const staticConstIsIgnored = 1;
+  void methodIsIgnored() {}
+}
+
+class Bar {
+  final n = 1;
 }
 
 final obj = Foo(
@@ -32,4 +39,18 @@ final objMap = {
   'nn': null,
   's': 'def',
   '_private': 'private',
+  'bar': {
+    '': 'Bar',
+    'n': 1,
+  },
+};
+
+class Recursive {
+  late Recursive self = this;
+}
+
+final recursive = Recursive();
+final recursiveMap = {
+  '': 'Recursive',
+  'self': '(RECURSION)',
 };

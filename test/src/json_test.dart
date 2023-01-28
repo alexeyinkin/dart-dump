@@ -26,11 +26,23 @@ void main() {
       expect(dumpJson('abc'), 'abc');
     });
 
-    test('Object', () {
-      expect(
-        dumpJson(obj),
-        objMap,
-      );
+    group('Object', () {
+      test('entirely', () {
+        expect(
+          dumpJson(obj),
+          objMap,
+        );
+      });
+
+      test('hide fields', () {
+        expect(
+          dumpJson(obj, hideFields: {'', 'b', 'd', 'n', '_private', 'bar'}),
+          {
+            'nn': null,
+            's': 'def',
+          },
+        );
+      });
     });
 
     test('List', () {
@@ -80,6 +92,15 @@ void main() {
           '[a]': ['b'],
         },
       );
+    });
+
+    group('recursion', () {
+      test('no refs', () {
+        expect(
+          dumpJson(recursive),
+          recursiveMap,
+        );
+      });
     });
   });
 }
