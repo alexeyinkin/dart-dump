@@ -1,0 +1,11 @@
+name: dump
+description: Dumps arbitrary objects using mirrors.
+repository: https://github.com/alexeyinkin/dart-dump
+version: 0.1.0
+
+environment:
+  sdk: '>=2.15.0 <4.0.0'
+
+dev_dependencies:
+  test: ^1.22.2
+  total_lints: ^2.19.0
