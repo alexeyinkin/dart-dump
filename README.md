@@ -1,6 +1,6 @@
 # dump
 
-Dumps arbitrary data using
+Dumps any objects to structures of maps, lists, and scalars using
 [mirrors](https://api.dart.dev/stable/2.19.0/dart-mirrors/dart-mirrors-library.html).
 
 The package provides two functions:
