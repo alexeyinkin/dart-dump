@@ -28,10 +28,10 @@ final dumped = dumpJson(toDump);
 //   'string',
 //   {
 //     '': 'Foo',
-//     b: false,
-//     d: 3.1415926,
-//     n: 456,
-//     s: 'def',
+//     'b': false,
+//     'd': 3.1415926,
+//     'n': 456,
+//     's': 'def',
 //   },
 // ]
 ```
