@@ -92,24 +92,50 @@ Map<String, dynamic> _dumpObject(
     result[_classNameKey] = MirrorSystem.getName(im.type.simpleName);
   }
 
-  for (final entry in im.type.declarations.entries) {
-    final valueMirror = entry.value;
+  for (final type in im.type.thisAndSuperclasses) {
+    for (final entry in type.declarations.entries) {
+      final valueMirror = entry.value;
 
-    if (valueMirror is! VariableMirror) continue;
-    if (valueMirror.isStatic) continue;
+      if (valueMirror is! VariableMirror) continue;
+      if (valueMirror.isStatic) continue;
 
-    final key = MirrorSystem.getName(entry.key);
-    if (hideFields.contains(key)) continue;
+      final key = MirrorSystem.getName(entry.key);
+      if (hideFields.contains(key)) continue;
 
-    final symbol = valueMirror.simpleName;
-    final reflectee = im.getField(symbol).reflectee;
+      final symbol = valueMirror.simpleName;
+      final reflectee = im
+          .getField(symbol)
+          .reflectee;
 
-    result[key] = _dumpJson(
-      reflectee,
-      hideFields: hideFields,
-      visited: visited,
-    );
+      result[key] = _dumpJson(
+        reflectee,
+        hideFields: hideFields,
+        visited: visited,
+      );
+    }
   }
 
-  return result;
+  return _sortMap(result);
+}
+
+Map<String, V> _sortMap<V>(Map<String, V> map) {
+  final keys = [...map.keys];
+  keys.sort(_compareKeys);
+  return { for (final key in keys) key: map[key] as V };
+}
+
+int _compareKeys(String a, String b) {
+  if (a.startsWith('_')) a = a.substring(1); // ignore: parameter_assignments
+  if (b.startsWith('_')) b = b.substring(1); // ignore: parameter_assignments
+  return a.compareTo(b);
+}
+
+extension on ClassMirror {
+  Iterable<ClassMirror> get thisAndSuperclasses sync* {
+    yield this;
+
+    if (superclass != null) {
+      yield* superclass!.thisAndSuperclasses;
+    }
+  }
 }

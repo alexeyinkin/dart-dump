@@ -43,6 +43,12 @@ void main() {
           },
         );
       });
+
+      test('inheritance', () {
+        final map = dumpJson(BarSub(), hideFields: {''}) as Map?;
+        expect(map?.keys, ['a', 'n', '_y', 'z']);
+        expect(map?.values, [0, 1, 'private', 3]);
+      });
     });
 
     test('List', () {

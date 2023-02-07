@@ -1,3 +1,8 @@
+## 0.1.4
+
+* Dump fields of superclasses.
+* Sort object fields alphabetically.
+
 ## 0.1.3
 
 * Fix recursive dumping of objects.

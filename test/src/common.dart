@@ -24,6 +24,13 @@ class Bar {
   final n = 1;
 }
 
+class BarSub extends Bar {
+  // The order is significant to test sorting.
+  final a = 0;
+  final z = 3;
+  final _y = 'private'; // ignore: unused_field
+}
+
 final obj = Foo(
   b: false,
   d: 3.1415926,
