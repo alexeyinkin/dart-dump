@@ -115,6 +115,10 @@ Map<String, dynamic> _dumpObject(
     }
   }
 
+  if (value is DateTime) {
+    result['toString()'] = value.toString();
+  }
+
   return _sortMap(result);
 }
 

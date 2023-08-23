@@ -26,6 +26,17 @@ void main() {
       expect(dumpJson('abc'), 'abc');
     });
 
+    test('DateTime', () {
+      expect(
+        dumpJson(DateTime(1999, 1, 2, 3, 4, 5, 6, 1008)),
+        {
+          '': 'DateTime',
+          'isUtc': false,
+          'toString()': '1999-01-02 03:04:05.007008',
+        },
+      );
+    });
+
     group('Object', () {
       test('entirely', () {
         expect(
