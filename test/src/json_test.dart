@@ -37,6 +37,18 @@ void main() {
       );
     });
 
+    test('Enum', () {
+      expect(
+        dumpJson(MyEnum.one),
+        {
+          '': 'MyEnum',
+          'index': 0,
+          'n': 1,
+          'name': 'one',
+        },
+      );
+    });
+
     group('Object', () {
       test('entirely', () {
         expect(
@@ -120,4 +132,13 @@ void main() {
       });
     });
   });
+}
+
+enum MyEnum {
+  one(1),
+  two(2),
+  ;
+
+  final int n; // ignore: unreachable_from_main, accessed via mirrors.
+  const MyEnum(this.n);
 }

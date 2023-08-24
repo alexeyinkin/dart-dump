@@ -119,6 +119,10 @@ Map<String, dynamic> _dumpObject(
     result['toString()'] = value.toString();
   }
 
+  if (value is Enum) {
+    result['name'] = value.name;
+  }
+
   return _sortMap(result);
 }
 

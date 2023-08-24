@@ -1,3 +1,7 @@
+## 0.1.6
+
+* Adds `name` key to dumps of `enum` instances.
+
 ## 0.1.5
 
 * Adds `toString()` key to dumps of `DateTime` objects, as they otherwise they were not showing datetime.
